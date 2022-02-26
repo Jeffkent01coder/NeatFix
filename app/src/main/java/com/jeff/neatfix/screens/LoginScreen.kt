@@ -9,11 +9,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -31,12 +27,12 @@ import com.jeff.neatfix.R
 import com.jeff.neatfix.composables.NextIcon
 
 @Composable
-fun SignUpScreen(){
+fun LoginScreen(){
     Column(modifier = Modifier
         .fillMaxSize()
         .background(Color(0xFF180E36)),
-    horizontalAlignment = Alignment.CenterHorizontally
-        ) {
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         Row(modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
@@ -46,13 +42,13 @@ fun SignUpScreen(){
                 contentDescription = "Back icon",
                 tint = Color.White.copy(alpha = 0.78F)
             )
-            Text(text = "Create Account",
-            modifier = Modifier.fillMaxWidth(),
+            Text(text = "Welcome Back",
+                modifier = Modifier.fillMaxWidth(),
                 textAlign = TextAlign.Center,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Medium,
                 color = Color.White.copy(alpha = 0.78F)
-                )
+            )
 
         }
 
@@ -62,10 +58,10 @@ fun SignUpScreen(){
         )
 
 
-        var inputEmail by remember{ mutableStateOf("")}
-        var passwordInput by  remember{ mutableStateOf("")}
-        var confirmPasswordInput by remember{ mutableStateOf("")}
-        var isPasswordVisible by remember{ mutableStateOf(false)}
+        var inputEmail by remember{ mutableStateOf("") }
+        var passwordInput by  remember{ mutableStateOf("") }
+        var confirmPasswordInput by remember{ mutableStateOf("") }
+        var isPasswordVisible by remember{ mutableStateOf(false) }
 
         val color = Color.White.copy(alpha = 0.78F)
         val textFieldColors = TextFieldDefaults.outlinedTextFieldColors(
@@ -107,14 +103,14 @@ fun SignUpScreen(){
                 .fillMaxWidth()
                 .padding(horizontal = 24.dp, vertical = 12.dp),
             label = {
-                    Text(text = "PassWord")
+                Text(text = "PassWord")
             },
             leadingIcon = {
                 Icon(imageVector = Icons.Default.Lock, contentDescription = "Icon")
             },
             trailingIcon = {
-                           val image = if (isPasswordVisible)
-                               R.drawable.ic_baseline_visibility_24 else R.drawable.ic_baseline_visibility_off_24
+                val image = if (isPasswordVisible)
+                    R.drawable.ic_baseline_visibility_24 else R.drawable.ic_baseline_visibility_off_24
                 IconButton(onClick = {
                     isPasswordVisible =! isPasswordVisible
                 }) {
@@ -128,46 +124,23 @@ fun SignUpScreen(){
             colors = textFieldColors
         )
 
-        OutlinedTextField(
-            value = confirmPasswordInput,
-            onValueChange = { newValue ->
-                confirmPasswordInput = newValue
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 24.dp, vertical = 12.dp),
-            label = {
-                    Text(text = "Confirm Password")
-            },
-            leadingIcon = {
-                Icon(imageVector = Icons.Default.Lock, contentDescription = "Icon")
-            },
-            trailingIcon = {
-                           val image = if (isPasswordVisible)
-                               R.drawable.ic_baseline_visibility_24 else R.drawable.ic_baseline_visibility_off_24
-                IconButton(onClick = {
-                    isPasswordVisible =! isPasswordVisible
-                }) {
-                    Icon(painter = painterResource(id = image), contentDescription = "Toggle Icon" )
-                }
-            },
-            singleLine = true,
-            visualTransformation = if (isPasswordVisible) VisualTransformation.None
-            else PasswordVisualTransformation(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-            colors = textFieldColors
-        )
 
-        NextIcon ( onClick = {
+
+        NextIcon( onClick = {
 
         })
+
+
+
+
+
 
     }
 
 }
 
-@Preview(device = Devices.PIXEL)
 @Composable
-fun SignUpScreenPrev(){
-    SignUpScreen()
+@Preview(device = Devices.PIXEL)
+fun LoginPrev(){
+    LoginScreen()
 }
