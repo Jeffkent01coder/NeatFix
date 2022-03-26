@@ -255,7 +255,7 @@ fun NestedScroll(){
         item {
             LazyRow(){
                 items(count = 10){
-                    MovieItem(image = painterResource(id = R.drawable.spider),
+                    MovieItem(image = painterResource(id = R.drawable.s),
                         title = "",
                         modifier = Modifier
                             .height(180.dp)
